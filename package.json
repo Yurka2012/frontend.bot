@@ -1,0 +1,22 @@
+{
+  "name": "frontend.bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yurka2012/frontend.bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yurka2012/frontend.bot/issues"
+  },
+  "homepage": "https://github.com/Yurka2012/frontend.bot#readme",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.61.0"
+  }
+}
