@@ -1,20 +1,30 @@
-const { Telegraf } = require('telegraf')
-const token = '6122214810:AAH2HudmeBy4Akoda9RL1xRtSx72pBI04SA'
-const bot = new Telegraf(process.env.token)
+const TelegramBot = require('node-telegram-bot-api');
+// импортирую библеотеку для создания бота в телеграм
+const bot = new TelegramBot('6122214810:AAH2HudmeBy4Akoda9RL1xRtSx72pBI04SA', { polling: true });
+//token
+bot.onText(/\/start/, (msg) => {
+    bot.sendMessage(msg.chat.id, 'Привет! Я твой новый телеграм-бот!');
+  });
+  //помоги сделать команду для телеграм бота чтобы он при вводе /повтор повторял а /стоп-повтор переставал повторять
+  
+let repeatMessage = "";
+let isRepeatOn = false;
 
-bot.launch()
-  .then(() => console.log('Bot started'))
-  .catch((err) => console.error(err))
+function repeat(bot, message) {
+    if (isRepeatOn) {
+        bot.sendMessage(message.chat.id, repeatMessage);
+    }
+}
 
-//do cmd that will send message to everyone whomuse bot (and to the terminal)
-const users = [] // store users who have used the bot
-// Your code to add users to this list goes here
+bot.onText(/\/rpt (.+)/, (message, match) => {
+    repeatMessage = match[1];
+    isRepeatOn = true;
+    bot.sendMessage(message.chat.id, "Повторение включено.");
+});
 
-const message = "Hello everyone!"
+bot.onText(/\/stop-rpt/, (message) => {
+    isRepeatOn = false;
+    bot.sendMessage(message.chat.id, "Повторение выключено.");
+});
 
-users.forEach(user => {
-  console.log(`Sending message "${message}" to ${user}`)
-  // Your code to send the message to each user goes here
-})
-
-console.log(`Message sent: "${message}"`) // display message in the terminal
+//добавь к этому коду сообщение которое я напишу после rpt  и убери /\/stop-rpt/  и покажи весь код с тем что ты добавишь
